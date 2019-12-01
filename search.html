@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="search.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cocktail Paradise | Search</title>
+</head>
+<body style="background: url('2.jpg');">
+    <header>
+        <div class="navbar-container">
+          <div class="navbar-content">
+            <ul>
+              <li><a>COCKTAIL PARADISE</a></li>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="catalogue.html">Catalogue</a></li>
+              <li><a href="search.html">Search</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="navbar-logo">
+              <img src="logo.jpg" alt="image" width="200px" height="70px" />
+            </div>
+          </div>
+        </div>
+    </header>
+
+
+    <div style="text-align: center; margin-top: 50px;">
+        <input type="text" name="cocktail" id="search-box" placeholder="Enter Ingredient">
+        <h4></h4>
+        <button onclick="runSearch()">Search</button>
+        <button  id='clear-button' style="margin-left: 10px;">Clear</button>
+    </div>
+    <br>
+    
+    <!-- <div class="footer">
+    </div> -->
+
+    
+    <script>
+        document.getElementById('clear-button').addEventListener('click', clear);
+            function clear(){
+                document.getElementById('search-box').value = ''
+                var remove_child = document.getElementById('parent-div')
+                document.body.removeChild(remove_child) 
+            }
+
+            // Third endpoint: returns list of cocktails with entered ingredient
+            function runSearch(){
+                var searchBoxValue = document.getElementById('search-box').value;
+                var url = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i='+searchBoxValue
+                var xhr = new XMLHttpRequest()
+                xhr.open('GET', url, true)
+                xhr.onreadystatechange = function task(){
+                    if(this.readyState == 4 && this.status == 200){
+
+                        var result = JSON.parse(this.responseText)
+                        console.log(result)
+
+                        // creating a parent div element
+                        var div_element = document.createElement('div')
+                        div_element.setAttribute('id', 'parent-div')
+                        document.body.appendChild(div_element)
+                        console.log(div_element)
+
+                        // creating a main div element which contains several individuals div elements
+                        var getParentDiv = document.getElementById('parent-div')
+                        var mainDiv = document.createElement('div')
+                        mainDiv.setAttribute('class', 'flex-container')
+                        console.log(mainDiv)
+
+                        // creating individual div elements inside main div element
+                        for(var j=1;j<=9;j++){
+                            var smallDiv = document.createElement('div')
+                            smallDiv.setAttribute('id', j)
+                            mainDiv.appendChild(smallDiv)
+                        }
+                        
+                        // appending main div element to the parent div element
+                        getParentDiv.appendChild(mainDiv)
+
+                        // fetching data from json and appending into individual div elements
+                        for(var i=2;i<=10;i++){
+
+                            // creating elements
+                            var div = document.getElementById(i-1)
+                            var drinkName = document.createElement('h3')
+                            var drinkImage = document.createElement('img')
+
+                            // inserting data into created elements
+                            var drinkNameText = result.drinks[i].strDrink
+                            var drinkImagePhoto = result.drinks[i].strDrinkThumb
+
+                            // image styling
+                            drinkImage.setAttribute('src', drinkImagePhoto)
+                            drinkImage.setAttribute('height', '300')
+                            drinkImage.setAttribute('width', '300')
+
+                            // appending name
+                            drinkName.innerHTML = drinkNameText
+
+                            // appending child to the parent element
+                            div.appendChild(drinkName)
+                            div.appendChild(drinkImage)
+
+                        }//for loop closed
+                    }//if block closed
+                }//function task() closed
+                xhr.send()
+            }//function runSearch() closed
+    </script>
+</body>
+</html>

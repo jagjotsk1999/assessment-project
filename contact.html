@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cocktail Paradise | Contact</title>
+</head>
+<body>
+    <header>
+        <div class="navbar-container">
+          <div class="navbar-content">
+            <ul>
+              <li><a>COCKTAIL PARADISE</a></li>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="catalogue.html">Catalogue</a></li>
+              <li><a href="search.html">Search</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="navbar-logo">
+              <img src="logo.jpg" alt="image" width="200px" height="70px" />
+            </div>
+          </div>
+        </div>
+    </header>
+    
+    <div class="container">
+      <h4>Contact Form</h4>
+      <form>
+        <label for="f-name">First Name</label>
+        <input type="text" name="first-name" id="f-name" placeholder="First Name Here">
+        <label for="l-name">Last Name</label>
+        <input type="text" name="last-name" id="l-name" placeholder="Last Name Here">
+        <label for="e-mail">E-Mail</label>
+        <input type="email" name="email" id="e-mail" placeholder="E-Mail Address">
+        <label for="feedback">Feedback</label>
+        <textarea name="feedback" id="feed-back" cols="30" rows="5" placeholder="Write Something..."></textarea>
+        <input type="submit" value="Submit" onclick="run()">
+      </form>
+      <br>
+      <div class="footer">
+          <blockquote>
+              <h3>Conceptualized and Created by: <br>
+                <img src="jagjot.jpg" alt="image" style="float: left; border-radius: 50%; border: 1px solid black;" height="90" width="80">
+                <span> Jagjot Singh Kohli <br> &nbsp;&nbsp; 
+                  <a href="https://jagjotsk1999.github.io" target="_blank">Resume</a>
+                </span>
+                <a href="https://github.com/jagjotsk1999" target="_blank" style="float: right;">
+                    <img src="gitHub.png" alt="github" style="border-radius: 50%; border: 1px solid black;" height="70" width="70">
+            </a> &nbsp;
+            <a href="https://www.linkedin.com/in/jagjot-singh-kohli-78b538170/" target="_blank" style="float: right;">
+                    <img src="linkedin.png" alt="linkedin" style="border-radius: 50%; border: 1px solid black;" height="70" width="70">
+                </a>
+              </h3>
+          </blockquote>
+        </div>
+    </div>
+
+    <script>
+      function run(){
+        alert("Submitted");
+      }
+    </script>
+</body>
+</html>
