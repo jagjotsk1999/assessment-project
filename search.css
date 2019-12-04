@@ -4,22 +4,6 @@ button:focus{
 input[type=text]:focus{
     outline:0;
 }
-/* button{
-	border-radius : 5px;
-	background : lightgreen;
-	padding: 8px 16px;
-    font-size: 135%;
-	border : 2px solid red;
-}
-button:hover{
-	background : red;
-	border : 2px solid yellow;
-	border-radius : 5px;
-    border : 2px solid #3CBC8D;
-    font-size: 135%;
-	padding: 8px 16px;
-	color: white;
-} */
 input[type=text]{
 	background-color: #3CBC8D;
     color: white;
@@ -32,10 +16,7 @@ input[type=text]{
 	font-size: 1em;
 	transition: border 0.5s;
 	-webkit-transition: border 0.5s;
-	-moz-transition: border 0.5s;
-	-o-transition: border 0.5s;
 	-webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
     box-sizing: border-box;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
@@ -53,8 +34,6 @@ button{
 	font-size: 1.29em;
 	font-family: 'Sniglet', cursive;
 	-webkit-transition: background-color 0.5s;
-	-moz-transition: background-color 0.5s;
-	-o-transition: background-color 0.5s;
 	transition: background-color 0.5s;
 }
 button:hover{
@@ -62,7 +41,6 @@ button:hover{
 	background-color: #e58f0e;
 }
 div.flex-container-random > div > img{
-    /* position: relative; */
     overflow: hidden;
     transition: transform 1s;
     border-radius: 5%;
@@ -73,18 +51,15 @@ div.flex-container-random > div > img:hover{
 }
 .flex-container-random {
     display: flex;
-    /* flex-wrap: wrap; */
     background-color: lightsalmon;
     justify-content: center;
     border-radius: 1%;
-    /* width: 370px; */
 }  
 .flex-container-random > div {
     background-color: #f1f1f1;
     margin: 5px;
     text-align: center;
     font-size: 20px;
-    /* height: 420px; */
     width: 350px;
     border-radius: 5%;
 }
