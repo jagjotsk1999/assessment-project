@@ -31,7 +31,7 @@
         <input type="text" name="cocktail" id="search-box" placeholder="Enter Ingredient">
         <h4></h4>
         <button onclick="runSearch()">Search</button>
-        <button  id='clear-button' style="margin-left: 10px;">Clear</button>
+        <button  id='clear-button' style="margin-left: 25px;">Clear</button>
     </div>
     <br>
     
@@ -47,7 +47,7 @@
                 document.body.removeChild(remove_child) 
             }
 
-            // Third endpoint: returns list of cocktails with entered ingredient
+            // Fourth endpoint: returns list of cocktails with entered ingredient
             function runSearch(){
                 var searchBoxValue = document.getElementById('search-box').value;
                 var url = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i='+searchBoxValue

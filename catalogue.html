@@ -29,8 +29,10 @@
 
     <div style="text-align: center; margin-top: 50px;">
         <button id="first-button" onclick="runAlcoholic()">Alcoholic</button>
-        <button id="second-button" style="margin-left: 10px;" onclick="runNonAlcoholic()">Non-Alcoholic</button>
-        <button id='clear-button' style="margin-left: 10px;">Clear</button>
+        <button id="second-button" style="margin-left: 75px;" onclick="runNonAlcoholic()">Non-Alcoholic</button>
+        <button id="random-button" style="margin-left: 75px;" onclick="runRandom()">Surprise</button>
+        <button id="clear-button" style="margin-left: 75px;">Clear</button>
+        
     </div>
     <br>
 
@@ -43,6 +45,7 @@
             function clear(){
                 document.getElementById('first-button').disabled = false;
                 document.getElementById('second-button').disabled = false;
+                document.getElementById('random-button').disabled = false;
                 var remove_child = document.getElementById('parent-div')
                 document.body.removeChild(remove_child)
             }
@@ -50,6 +53,7 @@
             // First Endpoint: returns cocktails that contain alcohol
             function runAlcoholic(){
                 document.getElementById('second-button').disabled = true;
+                document.getElementById('random-button').disabled = true;
                 var url = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic'
                 var xhr = new XMLHttpRequest()
                 xhr.open('GET', url, true)
@@ -115,6 +119,7 @@
             // Second endpoint: returns cocktails that does not contain alcohol
             function runNonAlcoholic(){
                 document.getElementById('first-button').disabled = true;
+                document.getElementById('random-button').disabled = true;
                 var url = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic'
                 var xhr = new XMLHttpRequest()
                 xhr.open('GET', url, true)
@@ -175,7 +180,76 @@
                 }//function task() closed
                 xhr.send()
             }//function runNonAlcoholic() closed
+            
 
+            // Third Endpoint: returns a random cocktail
+            function runRandom(){
+                document.getElementById('second-button').disabled = true;
+                document.getElementById('first-button').disabled = true;
+                document.getElementById('random-button').disabled = true;
+                var url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
+                var xhr = new XMLHttpRequest()
+                xhr.open('GET', url, true)
+                xhr.onreadystatechange = function task(){
+                    if(this.readyState == 4 && this.status == 200){
+                        
+                        var result = JSON.parse(this.responseText)
+                        console.log(result)
+
+                        // creating a parent div element
+                        var div_element = document.createElement('div')
+                        div_element.setAttribute('id', 'parent-div')
+                        document.body.appendChild(div_element)
+                        console.log(div_element)
+                        
+                        // creating a main div element
+                        var getParentDiv = document.getElementById('parent-div')
+                        var mainDiv = document.createElement('div')
+                        mainDiv.setAttribute('class', 'flex-container-random')
+                        console.log(mainDiv)
+
+                        // creating individual div element inside main div element
+                        var smallDiv = document.createElement('div')
+                        smallDiv.setAttribute('id', '1')
+                        mainDiv.appendChild(smallDiv)
+
+                        // appending main div element to the parent div element
+                        getParentDiv.appendChild(mainDiv)
+
+                        // creating element
+                        var div = document.getElementById('1')
+                        var drinkName = document.createElement('h3')
+                        var drinkImage = document.createElement('img')
+                        var drinkInstruction = document.createElement('p')
+                        var drinkIngredients = document.createElement('p')
+
+                        // inserting data into created elements
+                        var drinkNameText = result.drinks[0].strDrink
+                        var drinkImagePhoto = result.drinks[0].strDrinkThumb
+                        var drinkInstructionText = result.drinks[0].strInstructions
+                        var drinkIngredientsText = [result.drinks[0].strIngredient1, 
+                            result.drinks[0].strIngredient2, result.drinks[0].strIngredient3, 
+                            result.drinks[0].strIngredient4, result.drinks[0].strIngredient5]
+
+                        // image styling
+                        drinkImage.setAttribute('src', drinkImagePhoto)
+                        drinkImage.setAttribute('height', '300')
+                        drinkImage.setAttribute('width', '300')
+
+                        // appending name
+                        drinkName.innerHTML = drinkNameText
+                        drinkInstruction.innerHTML = "Instructions:<br>"+drinkInstructionText
+                        drinkIngredients.innerHTML = "Ingredients are:<br>"+drinkIngredientsText
+
+                        // appending child to the parent element
+                        div.appendChild(drinkName)
+                        div.appendChild(drinkImage)
+                        div.appendChild(drinkIngredients)
+                        div.appendChild(drinkInstruction)
+                    }//if block closed
+                }//function task() closed
+                xhr.send();
+            }//function runRandom() closed
     </script>
 </body>
 </html>
